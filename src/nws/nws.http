@@ -1,0 +1,17 @@
+### Get Points Data
+
+GET https://api.weather.gov/points/40.7128,-74.006
+Accept: application/json
+
+### Get Forecast
+
+GET https://api.weather.gov/gridpoints/OKX/33,35/forecast
+Accept: application/json
+
+### Get Alerts
+
+GET https://api.weather.gov/alerts?area=CA
+Accept: application/geo+json
+User-Agent: weather-app/1.0
+
+###
