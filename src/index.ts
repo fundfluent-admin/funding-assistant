@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { createServer } from "./funding-assistant.js";
 
@@ -6,6 +8,7 @@ async function main() {
   const { server, cleanup } = createServer();
   await server.connect(transport);
 
+  console.log("Server is running");
   // Cleanup on exit
   process.on("SIGINT", async () => {
     await cleanup();
