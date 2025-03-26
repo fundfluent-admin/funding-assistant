@@ -5,7 +5,7 @@ import { DocumentMasterDefinition } from "./document-master-definition.js";
 
 export class FluentLab {
   axiosInstance: AxiosInstance = axios.create({
-    baseURL: process.env.FLUENTLAB_MCP_API_URL || 'https://api.qa.fundfluent.io/exp/sme-exp',
+    baseURL: process.env.FLUENTLAB_MCP_API_URL || 'https://api.fundfluent.io/exp/sme-exp',
   });
   fundingOption: FundingOption = new FundingOption(this.axiosInstance);
   documentCheckList: DocumentChecklist = new DocumentChecklist(this.axiosInstance);
