@@ -1,33 +1,48 @@
 {
-  "name": "mcp-service",
+  "name": "@fluentlab/funding-assistant",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "build": "tsc && chmod 755 build/index.js"
+  "bin": {
+    "fluentlab-funding-assistant": "dist/index.js"
   },
   "files": [
-    "build"
+    "dist"
   ],
+  "scripts": {
+    "build": "tsc && chmod 755 dist/index.js",
+    "prepare": "npm run build",
+    "start:watch": "nodemon -w src -e ts -x 'npm run build && node dist/index.js'",
+    "start:sse": "node dist/sse.js",
+    "inspector": "npx -y @modelcontextprotocol/inspector",
+    "inspector:watch": "nodemon -w dist -e js -x 'npx -y @modelcontextprotocol/inspector'"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/fundfluent/mcp-service.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "FluentLab Limited",
+  "license": "MIT",
   "bugs": {
     "url": "https://bitbucket.org/fundfluent/mcp-service/issues"
   },
   "homepage": "https://bitbucket.org/fundfluent/mcp-service#readme",
-  "description": "",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
+    "axios": "^1.8.3",
+    "express": "^4.21.2",
+    "neverthrow": "^8.2.0",
     "node-fetch": "^3.3.2",
-    "zod": "^3.24.2"
+    "zod": "^3.24.2",
+    "zod-to-json-schema": "^3.24.4"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.4",
+    "@types/express": "^5.0.0",
     "@types/node": "^22.13.10",
+    "nodemon": "^3.1.9",
     "typescript": "^5.8.2"
   }
 }
