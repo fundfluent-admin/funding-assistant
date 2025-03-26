@@ -1,5 +1,5 @@
 {
-  "name": "@fluentlab/funding-assistant",
+  "name": "@fundfluent/funding-assistant",
   "version": "1.0.4",
   "description": "FluentLab funding assistant mcp server",
   "main": "index.js",
