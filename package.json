@@ -1,7 +1,7 @@
 {
-  "name": "@fluentlab/funding-assistant",
+  "name": "@fundfluent/funding-assistant",
   "version": "1.0.0",
-  "description": "",
+  "description": "FluentLab funding assistant mcp server",
   "main": "index.js",
   "type": "module",
   "bin": {
@@ -22,7 +22,10 @@
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/fundfluent/mcp-service.git"
   },
-  "keywords": [],
+  "keywords": [
+    "mcp",
+    "funding-assistant"
+  ],
   "author": "FluentLab Limited",
   "license": "MIT",
   "bugs": {
