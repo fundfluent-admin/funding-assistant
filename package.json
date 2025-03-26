@@ -1,6 +1,6 @@
 {
   "name": "@fundfluent/qa-funding-assistant",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "FluentLab funding assistant mcp server",
   "main": "index.js",
   "type": "module",
