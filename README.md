@@ -23,6 +23,14 @@ MCP Server for the FluentLab's Funding Assistant API.
 
 ## Setup
 
+### Installing via Smithery
+
+To install funding-assistant for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@fundfluent-admin/funding-assistant):
+
+```bash
+npx -y @smithery/cli install @fundfluent-admin/funding-assistant --client claude
+```
+
 ### Usage with Claude Desktop
 
 Add the following to your `claude_desktop_config.json`:
