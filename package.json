@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/fundfluent/mcp-service.git"
+    "url": "git+ssh@github.com:fundfluent-admin/funding-assistant.git"
   },
   "keywords": [
     "mcp",
@@ -29,9 +29,9 @@
   "author": "FluentLab Limited",
   "license": "MIT",
   "bugs": {
-    "url": "https://bitbucket.org/fundfluent/mcp-service/issues"
+    "url": "https://github.com/fundfluent-admin/funding-assistant/issues"
   },
-  "homepage": "https://bitbucket.org/fundfluent/mcp-service#readme",
+  "homepage": "https://github.com/fundfluent-admin/funding-assistant#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
     "axios": "^1.8.3",
