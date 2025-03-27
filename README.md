@@ -1,5 +1,7 @@
 # FluentLab Funding Assistant MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@fundfluent-admin/funding-assistant)](https://smithery.ai/server/@fundfluent-admin/funding-assistant)
+
 MCP Server for the FluentLab's Funding Assistant API.
 
 ## Tools
@@ -18,6 +20,14 @@ MCP Server for the FluentLab's Funding Assistant API.
     - Returns: List of required documents to apply for a funding programme
 
 ## Setup
+
+### Installing via Smithery
+
+To install funding-assistant for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@fundfluent-admin/funding-assistant):
+
+```bash
+npx -y @smithery/cli install @fundfluent-admin/funding-assistant --client claude
+```
 
 ### Usage with Claude Desktop
 
