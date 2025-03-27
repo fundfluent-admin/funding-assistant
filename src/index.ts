@@ -8,7 +8,7 @@ async function main() {
   const { server, cleanup } = createServer();
   await server.connect(transport);
 
-  console.log("Server is running");
+  console.log(`["Server is running"]`);
   // Cleanup on exit
   process.on("SIGINT", async () => {
     await cleanup();
