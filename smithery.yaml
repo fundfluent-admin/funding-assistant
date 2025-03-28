@@ -21,7 +21,7 @@ startCommand:
       command: 'node', 
       args: ['dist/index.js'], 
       env: { 
-        FLUENTLAB_MCP_API_URL: process.env.FLUENTLAB_MCP_API_URL 
+        FLUENTLAB_MCP_API_URL: config.FLUENTLAB_MCP_API_URL 
       } 
     })
   exampleConfig: {}
