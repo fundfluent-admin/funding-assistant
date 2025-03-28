@@ -4,16 +4,12 @@ startCommand:
   type: stdio
   configSchema:
     # JSON Schema defining the configuration options for the MCP.
-    {
-      "type": "object",
-      "properties": {
-        "FLUENTLAB_MCP_API_URL": {
-          "type": "string",
-          "description": "Optional URL for the FluentLab MCP API"
-        }
-      },
-      "additionalProperties": false
-    }
+    type: object
+    properties:
+      FLUENTLAB_MCP_API_URL:
+        type: string
+        description: "Optional URL for the FluentLab MCP API"
+    additionalProperties: false
   commandFunction:
     # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
     |-
