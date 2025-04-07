@@ -1,6 +1,6 @@
 {
   "name": "@fundfluent/funding-assistant",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "FluentLab funding assistant mcp server",
   "main": "index.js",
   "type": "module",
