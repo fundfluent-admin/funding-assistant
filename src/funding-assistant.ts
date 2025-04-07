@@ -104,12 +104,12 @@ export const createServer = () => {
     const tools: Tool[] = [
       {
         name: ToolName.GetFundingOptions,
-        description: 'Get funding options available including name, description and slug defined by FluentLab',
+        description: 'Retrieve available funding opportunities with detailed information including name and description.',
         inputSchema: zodToJsonSchema(FundingOptionQuerySchema) as ToolInput,
       },
       {
         name: 'get-document-checklist-for-funding-programme',
-        description: "Gets the comprehensive document checklist of a funding programme by funding option slug",
+        description: "Generate a comprehensive document checklist customized for a specific funding programme, drawing from expert insights and collective knowledge from hundreds of successful applications.",
         inputSchema: zodToJsonSchema(GetDocumentChecklistForFundingProgrammeSchema) as ToolInput,
       },
     ];
