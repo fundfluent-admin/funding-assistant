@@ -13,11 +13,7 @@ app.get("/sse", async (req, res) => {
   transport = new SSEServerTransport("/message", res);
   await server.connect(transport);
 
-  server.onclose = async () => {
-    await cleanup();
-    await server.close();
-    process.exit(0);
-  };
+  // Handle connection cleanup (TODO: implement proper connection handling)
 });
 
 app.post("/message", async (req, res) => {

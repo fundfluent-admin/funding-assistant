@@ -11,9 +11,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && chmod 755 dist/index.js",
+    "build": "tsc && chmod 755 dist/index.js && chmod 755 dist/http-server.js",
     "prepare": "npm run build",
     "start:watch": "nodemon -w src -e ts -x 'npm run build && node dist/index.js'",
+    "start:http": "node dist/http-server.js",
     "start:sse": "node dist/sse.js",
     "inspector": "npx -y @modelcontextprotocol/inspector",
     "inspector:watch": "nodemon -w dist -e js -x 'npx -y @modelcontextprotocol/inspector'"
@@ -33,7 +34,7 @@
   },
   "homepage": "https://fundfluent.io",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.7.0",
+    "@modelcontextprotocol/sdk": "^1.16.0",
     "axios": "^1.8.3",
     "express": "^4.21.2",
     "neverthrow": "^8.2.0",

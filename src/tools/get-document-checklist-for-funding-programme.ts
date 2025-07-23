@@ -40,7 +40,7 @@ export async function getDocumentChecklistForFundingProgramme(
 
   const checklistPage = await fluentLab.documentCheckList.find({
     originType: 'FundingOption',
-    originRefId: fundingOption.value.fundingOptionId,
+    originRefId: fundingOption.value.id,
   })
 
   if (checklistPage.isErr() || !checklistPage.value || !checklistPage.value.checklists.length)
