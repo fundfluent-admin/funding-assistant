@@ -4,7 +4,7 @@
 
 This document outlines the technical improvements and modernization plan for the FundFluent MCP server based on a comprehensive review of the current implementation and the latest MCP SDK updates.
 
-**Status Update (July 2025)**: Phases 1, 2, and 3B have been completed successfully. The server has been modernized with MCP SDK 1.16.0, McpServer pattern, StreamableHTTP transport, comprehensive error handling, resource support, enhanced tool annotations, and functional API authentication.
+**Status Update (July 2025)**: Phases 1, 2, 3B, and 4A have been completed successfully. The server has been modernized with MCP SDK 1.16.0, McpServer pattern, StreamableHTTP transport, comprehensive error handling, resource support, enhanced tool annotations, functional API authentication, and modular registration architecture.
 
 ## Current State Analysis
 
@@ -22,8 +22,9 @@ The current implementation follows modern MCP server patterns with:
 - Resource support for document management ✅
 - Enhanced tool annotations for better LLM understanding ✅
 - Functional API key authentication with Bearer token ✅
+- Modular registration architecture for scalability ✅
 
-## ✅ Completed Improvements (Phase 1, 2 & 3B)
+## ✅ Completed Improvements (Phase 1, 2, 3B & 4A)
 
 ### 1. SDK Version Update ✅ COMPLETED
 **Action**: Update `@modelcontextprotocol/sdk` from 1.7.0 to 1.16.0
@@ -166,6 +167,78 @@ export class FluentLab {
 - Add health check endpoints
 - Performance monitoring
 
+### 14. Modular Tool/Resource Registration System ✅ COMPLETED
+**Current**: Monolithic `funding-assistant.ts` file with inline registrations (378 lines)
+**Implemented**: Modular registry pattern with separation of concerns
+
+**Problem Solved**:
+- File growth issue: Main file reduced from 378 lines to 18 lines (95% reduction)
+- Poor maintainability: Each tool/resource now in separate, testable modules
+- Repetitive error handling: Centralized error handling middleware
+- Hard to add new tools: Simple file creation and export pattern
+
+**Architecture Implemented**:
+```
+src/
+├── types/mcp.ts              # Type definitions for modular components
+├── utils/error-handler.ts    # Centralized error handling middleware
+├── registries/
+│   ├── registry-utils.ts     # Registration utilities
+│   └── index.ts             # Master registration orchestrator
+├── tools/
+│   ├── get-funding-options.ts # Clean, testable tool definitions
+│   └── index.ts             # Tool registry
+├── resources/
+│   ├── funding-documents.ts  # Modular resource handlers
+│   ├── funding-options.ts
+│   ├── funding-templates.ts
+│   └── index.ts             # Resource registry
+├── prompts-registry/
+│   ├── check-funding-documents.ts
+│   ├── organize-funding-documents.ts
+│   └── index.ts             # Prompt registry
+└── funding-assistant.ts     # 18 lines vs 378 lines!
+```
+
+**Benefits Achieved**:
+- **📉 Massive Line Reduction**: Main file went from 378 lines to 18 lines
+- **🔧 Easy Tool Addition**: Create file in `/tools/`, export in registry
+- **🎯 Separation of Concerns**: Business logic separate from registration
+- **🧪 Testable**: Each component can be unit tested independently
+- **🔄 DRY Principle**: Error handling centralized, no repetition
+- **📈 Scalable**: Can add 100+ tools without bloating main file
+
+**Date Completed**: July 23, 2025
+
+### 15. NestJS Migration Assessment 📊 EVALUATED - DEFERRED
+**Current**: Simple functional MCP server with direct SDK integration
+**Evaluated**: NestJS framework migration for enterprise architecture
+
+**Assessment Results**:
+- **Available Solutions**: Multiple mature NestJS MCP modules in 2025 (@rekog/mcp-nest, @bamada/nestjs-mcp, @orbit-codes/nestjs-mcp)
+- **Benefits**: Enterprise architecture, dependency injection, better testing, scalability features
+- **Drawbacks**: Significant complexity overhead, 2-3 week migration effort, over-engineering for current scope
+- **Current State**: Existing service is modern, functional, and meets all requirements
+
+**Decision**: **DEFERRED** - Similar to OAuth2 approach, migration will be data-driven based on actual usage patterns and business needs
+
+**Triggers for Re-evaluation**:
+- Team size grows beyond 3-4 developers
+- Multiple MCP servers need to be maintained
+- Complex business logic requires better architectural patterns
+- Enterprise features (monitoring, scaling, microservices) become necessary
+- Current maintenance becomes difficult due to codebase complexity
+
+**Timeline**: Re-evaluate after 6-12 months of production usage
+
+**Migration Plan (if needed in future)**:
+1. **Phase 1**: Set up NestJS foundation with @rekog/mcp-nest module
+2. **Phase 2**: Migrate tools using @McpTool decorators
+3. **Phase 3**: Migrate resources using @McpResource decorators  
+4. **Phase 4**: Migrate prompts using @McpPrompt decorators
+5. **Phase 5**: Add enterprise features (guards, interceptors, proper DI)
+6. **Phase 6**: Testing and deployment with backward compatibility
+
 ## Technical Debt Items
 
 1. **TypeScript Improvements**
@@ -213,7 +286,12 @@ export class FluentLab {
 2. Update documentation with new capabilities
 3. Performance testing and optimization
 
-### 📈 Phase 4 (Future - Data-Driven)
+### ✅ Phase 4A (COMPLETED - July 2025)
+1. ✅ **Implement Modular Registration System** - Major architectural improvement for scalability
+2. Centralized error handling and DRY principles
+3. Testable and maintainable component architecture
+
+### 📈 Phase 4B (Future - Data-Driven)
 1. Add comprehensive testing suite
 2. Evaluate OAuth2 migration based on usage patterns
 3. Implement completion support and LLM integration
@@ -237,18 +315,22 @@ export class FluentLab {
 
 ## Success Metrics
 
-1. **✅ Technical Metrics (Phase 1-3B Achieved)**
+1. **✅ Technical Metrics (Phase 1-4A Achieved)**
    - ✅ SDK version up-to-date (1.16.0)
    - ✅ API authentication functional (Bearer token implemented)
+   - ✅ Modular architecture (95% line reduction in main file)
    - Response time < 200ms (to be measured)
    - Error rate < 1% (to be measured)
    - Test coverage > 80% (future goal)
 
-2. **✅ Developer Experience (Phase 1-2 Achieved)**
+2. **✅ Developer Experience (Phase 1-4A Achieved)**
    - ✅ Reduced code complexity with McpServer pattern
    - ✅ Better type safety with Zod schemas
    - ✅ Clearer error messages with MCP error codes
    - ✅ Enhanced tool annotations and descriptions
+   - ✅ Modular architecture for easy tool addition
+   - ✅ Centralized error handling with DRY principles
+   - ✅ Testable component isolation
 
 3. **📊 Feature Adoption (To Be Measured)**
    - Resource usage metrics (new capability)
@@ -258,15 +340,17 @@ export class FluentLab {
 
 ## Conclusion
 
-**Major Achievement**: The FundFluent MCP server has been successfully modernized with MCP SDK 1.16.0, implementing all core improvements from Phases 1 and 2. The server now features:
+**Major Achievement**: The FundFluent MCP server has been successfully modernized through multiple phases, implementing all core improvements from Phases 1, 2, 3B, and 4A. The server now features:
 
 - Modern McpServer architecture with enhanced capabilities
 - StreamableHTTP transport for improved performance and reliability  
 - Comprehensive resource support for document management
 - Robust error handling with proper MCP error codes
 - Enhanced tool annotations for better LLM understanding
+- Modular registration architecture with 95% line reduction in main file
+- Centralized error handling and separation of concerns
 
-**Current Status**: The server architecture is now state-of-the-art with fully functional API authentication. All critical blocking issues have been resolved.
+**Current Status**: The server architecture is now state-of-the-art with fully functional API authentication and modular scalability. All critical blocking issues have been resolved and the codebase is highly maintainable.
 
 **Strategic Decision**: OAuth2 migration has been deferred in favor of a simpler, data-driven approach. The current API key method has been successfully implemented with Bearer token authentication, with OAuth2 evaluation after sufficient usage data is collected.
 
