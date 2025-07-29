@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/fundfluent-admin-funding-assistant-badge.png)](https://mseep.ai/app/fundfluent-admin-funding-assistant)
+
 # FluentLab Funding Assistant MCP Server
 
 [![smithery badge](https://smithery.ai/badge/@fundfluent-admin/funding-assistant)](https://smithery.ai/server/@fundfluent-admin/funding-assistant)
