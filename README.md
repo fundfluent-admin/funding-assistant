@@ -6,6 +6,10 @@
 
 MCP Server for the FluentLab's Funding Assistant API.
 
+<a href="https://glama.ai/mcp/servers/@fundfluent-admin/funding-assistant">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@fundfluent-admin/funding-assistant/badge" alt="FluentLab Funding Assistant MCP server" />
+</a>
+
 ## Tools
 
 1. `get-funding-options`
